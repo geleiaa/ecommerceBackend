@@ -1,5 +1,8 @@
 const express = require('express');
+
 const router = express.Router();
+
+const Products = require('./../database/models/productsModel');
 
 router
 .route('/')
@@ -13,13 +16,9 @@ router
     })
 })
 .post( async (req, res) => { // POST create user
-    const {
-        nome,
-        preco,
-        quatidadeEstq,
-    } = req.body
+    const {nome, preco, quatidadeestq} = req.body
 
-    const product = await create(req.body)
+    const product = await Products.create(req.body)
 
     res.status(201).json({
         status: "produto criado",
@@ -27,37 +26,39 @@ router
     })
 })
 
-router
-route('/:id')
-.get( async (req, res) =>{ // GET user por id
-    const productId = req.params.id
+// router
+// .route('/:id')
+// .get( async (req, res) =>{ // GET user por id
+//     const productId = req.params.id
 
-    const product = await findById(productId);
+//     const product = await findById(productId);
 
-    res.status(200).json({
-        status: "Ok",
-        data: product
-    })
-})
+//     res.status(200).json({
+//         status: "Ok",
+//         data: product
+//     })
+// })
 
-.patch( async(req, res) =>{ // PATCH update product por id
-    const productId = req.params.id
-    const { fields } = req.body
+// .patch( async(req, res) =>{ // PATCH update product por id
+//     const productId = req.params.id
+//     const { fields } = req.body
 
-    const productUpdated = await findByIdAndUpdate(productId, fields)
+//     const productUpdated = await findByIdAndUpdate(productId, fields)
 
-    res.status(204).json({
-        status: "produto atualizado",
-        data: productUpdated
-    })
-})
+//     res.status(204).json({
+//         status: "produto atualizado",
+//         data: productUpdated
+//     })
+// })
 
-.delete( async (req, res) => {
-    const productId = req.params.id
+// .delete( async (req, res) => {
+//     const productId = req.params.id
 
-    await deleteById(productId);
+//     await deleteById(productId);
 
-    res.status(200).json({
-        status: "produto removido"
-    })
-})
+//     res.status(200).json({
+//         status: "produto removido"
+//     })
+// })
+
+module.exports = router;

@@ -3,12 +3,13 @@ const express = require('express');
 const router = express.Router();
 
 const Client = require('../database/models/clientModel');
+//const Products = require('../database/models/productsModel');
 
 router
 .route('/')
 .get( async (req, res) => { // GET clients
     
-    const clients = await findAll();
+    const clients = await Client.findAll();
 
     res.status(200).json({
         status: "Ok",

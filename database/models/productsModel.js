@@ -1,6 +1,6 @@
-const Client = require('./../models/clientModel');
-const {Sequelize, DataTypes} = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('./../../server/db');
+const Client = require('./clientModel');
 
 const Products = sequelize.define('products', {
     id: {
@@ -13,22 +13,28 @@ const Products = sequelize.define('products', {
         type: DataTypes.STRING(30),
         allowNull: false
     },
-    preço: {
+    preco: {
         type: DataTypes.FLOAT(11),
         allowNull: false
     },
-    quatidadeEstq: {
+    quatidadeestq: {
         type: DataTypes.INTEGER,
         allowNull: false,
 
     },
-    createdAt: new Date(),
-    updatedAt: new Date()
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false
+    }
 })
 
-Client.hasOne(Products)
-Products.belongTo(Client, {
-    foreingkey: 'prodId'
-})
+//Client.hasOne(Products)
+// Products.belongsTo(Client, {
+//     foreingkey: 'prodId'
+// })
 
 module.exports = Products;

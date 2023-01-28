@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const dotenv = require('dotenv')
 dotenv.config({ path: './config.env' });
 
-// const sequelizie = new Sequelize(`postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
+// const sequelize = new Sequelize(`postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
 
 const sequelize = new Sequelize(
     process.env.DB_NAME, 
