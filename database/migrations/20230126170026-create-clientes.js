@@ -24,6 +24,10 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER(15),
         allowNull: false
       },
+      prodId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false

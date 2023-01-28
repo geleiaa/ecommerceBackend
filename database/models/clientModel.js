@@ -25,6 +25,10 @@ const Client = sequelize.define('clients', {
     prodId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: 'Products',
+            key: 'id'
+        }
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -36,10 +40,9 @@ const Client = sequelize.define('clients', {
     }
 });
 
-//Products.hasOne(Client)
+//Client.hasOne(Products)
 Products.belongsTo(Client, {
-    constranis: true,
-    foreingkey: 'prodId'
+    foreignkey: 'prodId'
 })
 
 // Client.hasMany(Products, {

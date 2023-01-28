@@ -16,7 +16,7 @@ router
     })
 })
 .post( async (req, res) => { // POST create user
-    const {nome, preco, quatidadeestq} = req.body
+    const {nome, preço, quatidadeEstq} = req.body
 
     const product = await Products.create(req.body)
 

@@ -13,11 +13,11 @@ const Products = sequelize.define('products', {
         type: DataTypes.STRING(30),
         allowNull: false
     },
-    preco: {
+    preço: {
         type: DataTypes.FLOAT(11),
         allowNull: false
     },
-    quatidadeestq: {
+    quatidadeEstq: {
         type: DataTypes.INTEGER,
         allowNull: false,
 
@@ -32,9 +32,9 @@ const Products = sequelize.define('products', {
     }
 })
 
-//Client.hasOne(Products)
-// Products.belongsTo(Client, {
-//     foreingkey: 'prodId'
-// })
+Client.hasMany(Products, {
+    foreignKey: 'prodId'
+})
+// Client.belongsTo(Products)
 
 module.exports = Products;

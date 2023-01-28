@@ -3,13 +3,13 @@ const express = require('express');
 const router = express.Router();
 
 const Client = require('../database/models/clientModel');
-//const Products = require('../database/models/productsModel');
+const Products = require('../database/models/productsModel');
 
 router
 .route('/')
 .get( async (req, res) => { // GET clients
     
-    const clients = await Client.findAll();
+    const clients = await Client.findOne({ where: {name: "Testando1"}, include: Client.prodId});
 
     res.status(200).json({
         status: "Ok",

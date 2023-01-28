@@ -1,6 +1,6 @@
 'use strict';
 
-const {Sequelize, DataTypes} = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -16,14 +16,13 @@ module.exports = {
         type: Sequelize.DataTypes.STRING(30),
         allowNull: false
       },
-      preco: {
+      preço: {
         type: Sequelize.DataTypes.FLOAT(11),
         allowNull: false
       },
-      quatidadeestq: {
+      quatidadeEstq: {
         type: Sequelize.DataTypes.INTEGER,
-        allowNull: false,
-
+        allowNull: false
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -34,7 +33,6 @@ module.exports = {
         allowNull: false
       }
     })
-
   },
 
   async down(queryInterface, Sequelize) {
