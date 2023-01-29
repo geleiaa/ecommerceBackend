@@ -8,7 +8,7 @@ router
 .route('/')
 .get( async (req, res) => { // GET roducts
     
-    const products = await findAll();
+    const products = await Products.findAll();
 
     res.status(200).json({
         status: "Ok",

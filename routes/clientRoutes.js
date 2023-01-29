@@ -9,7 +9,7 @@ router
 .route('/')
 .get( async (req, res) => { // GET clients
     
-    const clients = await Client.findOne({ where: {name: "Testando1"}, include: Client.prodId});
+    const clients = await Client.findAll({ include: Products });
 
     res.status(200).json({
         status: "Ok",
@@ -27,18 +27,18 @@ router
     })
 })
 
-// router
-// route('/:id')
-// .get( async (req, res) =>{ // GET client por id
-//     const clientId = req.params.id
+router
+.route('/:id')
+.get( async (req, res) =>{ // GET client por id
+    const clientId = req.params.id
 
-//     const client = await findById(clientid);
+    const client = await Client.findByPk(clientId, {include: Products});
 
-//     res.status(200).json({
-//         status: "Ok",
-//         data: client
-//     })
-// })
+    res.status(200).json({
+        status: "Ok",
+        data: client
+    })
+})
 
 // .patch( async(req, res) =>{ // PATCH update client por id
 //     const clientId = req.params.id

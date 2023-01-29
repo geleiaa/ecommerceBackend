@@ -32,9 +32,9 @@ const Products = sequelize.define('products', {
     }
 })
 
-Client.hasMany(Products, {
-    foreignKey: 'prodId'
-})
-// Client.belongsTo(Products)
+
+// Client.hasMany(Products, {
+//     foreignKey: 'prodId'
+// })
 
 module.exports = Products;

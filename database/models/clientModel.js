@@ -22,7 +22,7 @@ const Client = sequelize.define('clients', {
         type: DataTypes.INTEGER(15),
         allowNull: false
     },
-    prodId: {
+    productId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -40,13 +40,7 @@ const Client = sequelize.define('clients', {
     }
 });
 
-//Client.hasOne(Products)
-Products.belongsTo(Client, {
-    foreignkey: 'prodId'
-})
 
-// Client.hasMany(Products, {
-//     foreingkey: 'prodId'
-// })
+Client.belongsTo(Products)
 
 module.exports = Client;
