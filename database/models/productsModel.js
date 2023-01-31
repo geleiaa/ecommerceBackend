@@ -1,8 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('./../../server/db');
-const Client = require('./clientModel');
 
-const Products = sequelize.define('products', {
+const Pedidos = require('./pedidosModel');
+const Estoque = require('./estoqueModel');
+
+const Produtos = sequelize.define('produtos', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -17,10 +19,13 @@ const Products = sequelize.define('products', {
         type: DataTypes.FLOAT(11),
         allowNull: false
     },
-    quatidadeEstq: {
-        type: DataTypes.INTEGER,
+    estoqueId: {
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
-
+        references: {
+            model: 'Estoque',
+            key: 'id'
+        }
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -30,11 +35,11 @@ const Products = sequelize.define('products', {
         type: DataTypes.DATE,
         allowNull: false
     }
+}, {
+    freezeTableName: true
 })
 
 
-// Client.hasMany(Products, {
-//     foreignKey: 'prodId'
-// })
+Produtos.belongsTo(Estoque);
 
-module.exports = Products;
+module.exports = Produtos;

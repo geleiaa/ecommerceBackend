@@ -4,24 +4,24 @@ const {Sequelize, DataTypes} = require('sequelize');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('clientes', {
+  async up (queryInterface, Sequelize) {
+    await queryInterface.createTable('pedidos', {
       id: {
         type: Sequelize.DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
-      name: {
-        type: Sequelize.DataTypes.STRING(20),
+      produtoId: {
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false
       },
-      email: {
-        type: Sequelize.DataTypes.STRING(50),
+      clienteId: {
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false
       },
-      tel: {
-        type: Sequelize.DataTypes.INTEGER(15),
+      quantidadeDoProd: {
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false
       },
       createdAt: {
@@ -32,10 +32,10 @@ module.exports = {
         type: Sequelize.DataTypes.DATE,
         allowNull: false
       }
-    })
+    });
   },
 
-  async down(queryInterface, Sequelize) {
-   await queryInterface.dropTable('clientes');
-}
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('pedidos');
+  }
 };

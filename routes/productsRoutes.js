@@ -2,13 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 
+const Estoque = require('../database/models/estoqueModel');
 const Products = require('./../database/models/productsModel');
 
 router
 .route('/')
 .get( async (req, res) => { // GET roducts
     
-    const products = await Products.findAll();
+    const products = await Products.findAll({ include: Estoque});
 
     res.status(200).json({
         status: "Ok",

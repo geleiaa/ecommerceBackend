@@ -1,23 +1,17 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('./../../server/db');
 
-const Clientes = sequelize.define('clientes', {
+const Produtos = require('./productsModel');
+
+const Estoque = sequelize.define('estoque', {
     id: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true
     },
-    name: {
-        type: DataTypes.STRING(20),
-        allowNull: false
-    },
-    email: {
-        type: DataTypes.STRING(50),
-        allowNull: false
-    },
-    tel: {
-        type: DataTypes.INTEGER(15),
+    quantidade: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     createdAt: {
@@ -32,4 +26,4 @@ const Clientes = sequelize.define('clientes', {
     freezeTableName: true
 })
 
-module.exports = Clientes;
+module.exports = Estoque;
