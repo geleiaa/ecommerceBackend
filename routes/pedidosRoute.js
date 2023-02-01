@@ -5,7 +5,12 @@ const router = express.Router();
 const Pedidos = require('../database/models/pedidosModel');
 const Clientes = require('../database/models/clientModel');
 const Produtos = require('../database/models/productsModel');
+//const Estoque = require('../database/models/estoqueModel');
+const pedidosController = require('../controllers/pedidosControll');
 
+router
+.route('/date-filter:date')
+.get(pedidosController.fitrarClientPorData)
 
 router
 .route('/')
@@ -35,7 +40,7 @@ router
 .get( async (req, res) =>{ // GET user por id
     const pedidoId = req.params.id
 
-    const pedido = await Estoque.findAll({ where: { pedidoId }});
+    const pedido = await Pedidos.findAll({ where: { pedidoId }});
 
     res.status(200).json({
         status: "Ok",
