@@ -14,18 +14,18 @@ const Pedidos = sequelize.define('pedidos', {
     produtoId: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
-        // references: {
-        //     model: 'Produtos',
-        //     key: 'id'
-        // }
+        references: {
+            model: 'Produtos',
+            key: 'id'
+        }
     },
     clienteId: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
-        // references: {
-        //     model: 'Clientes',
-        //     key: 'id'
-        // }
+        references: {
+            model: 'Clientes',
+            key: 'id'
+        }
     },
     quantidadeDoProd: {
         type: Sequelize.DataTypes.INTEGER,
@@ -43,7 +43,7 @@ const Pedidos = sequelize.define('pedidos', {
     freezeTableName: true
 })
 
-// Pedidos.belongsTo(Clientes)
-// Pedidos.belongsTo(Produtos)
+Pedidos.belongsTo(Clientes)
+Pedidos.belongsTo(Produtos)
 
 module.exports = Pedidos;

@@ -14,6 +14,14 @@ const Estoque = sequelize.define('estoque', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    produtoId: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Produtos',
+            key: 'id'
+        }
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false
@@ -25,5 +33,6 @@ const Estoque = sequelize.define('estoque', {
 }, {
     freezeTableName: true
 })
+
 
 module.exports = Estoque;

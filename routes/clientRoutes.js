@@ -9,7 +9,7 @@ router
 .route('/')
 .get( async (req, res) => { // GET clients
     
-    const clients = await Client.findAll({ include: Products });
+    const clients = await Client.findAll();
 
     res.status(200).json({
         status: "Ok",
@@ -32,7 +32,7 @@ router
 .get( async (req, res) =>{ // GET client por id
     const clientId = req.params.id
 
-    const client = await Client.findByPk(clientId, {include: Products});
+    const client = await Client.findAll({where: clientId})
 
     res.status(200).json({
         status: "Ok",
@@ -40,26 +40,26 @@ router
     })
 })
 
-// .patch( async(req, res) =>{ // PATCH update client por id
-//     const clientId = req.params.id
-//     const { fields } = req.body
+.patch( async(req, res) =>{ // PATCH update client por id
+    const clientId = req.params.id
+    const { fields } = req.body
 
-//     const clientUpdated = await findByIdAndUpdate(clientId, fields)
+    const clientUpdated = await findByIdAndUpdate({fields}, {where: clientId})
 
-//     res.status(204).json({
-//         status: "client updated",
-//         data: clientUpdated
-//     })
-// })
+    res.status(204).json({
+        status: "client updated",
+        data: clientUpdated
+    })
+})
 
-// .delete( async (req, res) => {
-//     const clientId = req.params.id
+.delete( async (req, res) => {
+    const clientId = req.params.id
 
-//     await deleteById(clientId);
+    await destroy({where: clientId});
 
-//     res.status(200).json({
-//         status: "client removed"
-//     })
-// })
+    res.status(200).json({
+        status: "client removed"
+    })
+})
 
 module.exports = router;

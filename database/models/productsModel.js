@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('./../../server/db');
 
-const Pedidos = require('./pedidosModel');
 const Estoque = require('./estoqueModel');
 
 const Produtos = sequelize.define('produtos', {
@@ -41,5 +40,7 @@ const Produtos = sequelize.define('produtos', {
 
 
 Produtos.belongsTo(Estoque);
+
+Estoque.hasOne(Produtos);
 
 module.exports = Produtos;
