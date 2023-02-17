@@ -9,8 +9,8 @@ const Produtos = require('../database/models/productsModel');
 const pedidosController = require('../controllers/pedidosControll');
 
 router
-.route('/date-filter:date')
-.get(pedidosController.fitrarClientPorData)
+.route('/date-filter/:date/cliente/:cliId')
+.get(pedidosController.fitrarClientPorData);
 
 router
 .route('/')
@@ -33,7 +33,7 @@ router
         status: "pedido criado",
         data: pedido
     })
-})
+});
 
 router
 .route('/:id')
@@ -68,6 +68,6 @@ router
     res.status(200).json({
         status: "estoque removido"
     })
-})
+});
 
 module.exports = router;

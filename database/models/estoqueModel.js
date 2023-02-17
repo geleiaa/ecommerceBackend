@@ -23,11 +23,11 @@ const Estoque = sequelize.define('estoque', {
         }
     },
     createdAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
     updatedAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     }
 }, {

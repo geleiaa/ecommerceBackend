@@ -27,11 +27,11 @@ const Produtos = sequelize.define('produtos', {
         }
     },
     createdAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
     updatedAt: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     }
 }, {

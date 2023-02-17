@@ -2,8 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
+
 const Client = require('../database/models/clientModel');
 const Products = require('../database/models/productsModel');
+const Pedidos = require('../database/models/pedidosModel');
 
 router
 .route('/')
