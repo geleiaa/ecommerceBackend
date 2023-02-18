@@ -9,7 +9,7 @@ router
 .route('/')
 .get( async (req, res) => { // GET roducts
     
-    const products = await Products.findAll({ include: Estoque});
+    const products = await Products.findAll({ include: Estoque });
 
     res.status(200).json({
         status: "Ok",
@@ -17,9 +17,15 @@ router
     })
 })
 .post( async (req, res) => { // POST create user
-    const {nome, preço, quatidadeEstq} = req.body
+    const nome = req.body.nome
+    const preço = req.body.preço 
+    const estoqId = req.body.estoqueId
 
-    const product = await Products.create(req.body)
+    const product = await Products.create({
+        nome,
+        preço,
+        estoqId
+    })
 
     res.status(201).json({
         status: "produto criado",

@@ -11,20 +11,19 @@ router
 
 .get( async (req, res) => { // GET roducts
     
-    const stoq = await Estoque.findAll({ include: Produtos});
+    const stoq = await Estoque.findAll({ include: Produtos });
 
     res.status(200).json({
         status: "Ok",
         data: stoq
     })
-})
+}) 
 
 .post( async (req, res) => {
-    const { quantidade } = req.body;
+    const prodId = req.body.produtoId
+    const quantidade  = req.body.quantidade;
 
-    console.log(req.body);
-
-    const estqProd = await Estoque.create(req.body)
+    const estqProd = await Estoque.create({quantidade, prodId})
 
     res.status(201).json({
         status: "estocado",

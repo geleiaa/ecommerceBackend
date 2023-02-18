@@ -4,7 +4,7 @@
 2 - A aplicação deve ser capaz de filtrar as compras por cliente.
 (feito)
 
-3 - A aplicação deve ser capaz de listar as compras de um cliente por dia, mês e ano.
+3 - A aplicação deve ser capaz de listar as compras de um cliente por dia, mês e ano.(feito)
 
 4 - A aplicação deve ser capaz de listar de forma ordenada os produtos mais vendidos por dia, mês e ano.
 

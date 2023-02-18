@@ -11,28 +11,24 @@ const fitrarClientPorData = async (req, res) => {
     let date = new Array(req.params.date);
     let datePedido = '';
     for (let dt of date){
-        console.log('FOR', dt)
         datePedido = new Date(dt)
     }
-    // date.map(dt => {
-    //     return new Date(dt + "")
-    // });
 
-    console.log('DADOS', datePedido);
-
-    const pedidoClient = await Pedidos.findAll({
+    const pedidoCliente = await Pedidos.findAll({
         where: {
             createdAt: {
-                [Op.eq]: datePedido
+                [Op.gte]: datePedido
+            },
+            clienteId: {
+                [Op.eq]: clientID
             }
         },
-        // attributes: {
-        //     include: [clientID] <------- se ligaaaa
-        // }    
+        include: Clientes
     })
+
     res.status(200).json({
         status: "Ok",
-        data: pedidoClient
+        pedido: pedidoCliente
     })
 }
 
