@@ -32,11 +32,11 @@ const Pedidos = sequelize.define('pedidos', {
         allowNull: false
     },
     createdAt: {
-        type: Sequelize.DataTypes.DATEONLY,
+        type: Sequelize.DataTypes.DATE,
         allowNull: false
     },
     updatedAt: {
-        type: Sequelize.DataTypes.DATEONLY,
+        type: Sequelize.DataTypes.DATE,
         allowNull: false
     }
 }, {

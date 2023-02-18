@@ -21,11 +21,11 @@ const Clientes = sequelize.define('clientes', {
         allowNull: false
     },
     createdAt: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.DATE,
         allowNull: false
     },
     updatedAt: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.DATE,
         allowNull: false
     }
 }, {
