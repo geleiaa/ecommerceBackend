@@ -12,18 +12,15 @@
 
 6 - A quantidade em estoque de um produto deve ser subtraída na efetivação de uma compra.
 
-7 - O cliente deve ter no mínimo as seguintes propriedades: nome, telefone e email.
-(feito)
+7 - O cliente deve ter no mínimo as seguintes propriedades: nome, telefone e email.(feito)
 
-8 - O produto deve conter as seguintes propriedades: nome, quantidade em estoque e preço.
-(feito)
+8 - O produto deve conter as seguintes propriedades: nome, quantidade em estoque e preço.(feito)
 
 9 - Deve ser documentado as instruções de como construir, rodar e quais são funcionalidades contempladas e como funcionam.
 
 10 - Pode ser utilizado qualquer framework que facilite o desenvolvimento.
 
-11 - Pode conter migrations para o gerenciamento das tabelas no banco de dados.
-(feito)
+11 - Pode conter migrations para o gerenciamento das tabelas no banco de dados.(feito)
 
 12 - Pode conter testes unitários ou de integração.
 

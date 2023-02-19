@@ -10,7 +10,7 @@ const fitrarClientPorData = async (req, res) => {
     const clientID = req.params.cliId;
     let date = new Array(req.params.date);
     let datePedido = '';
-    for (let dt of date){
+    for (let dt of date) {
         datePedido = new Date(dt)
     }
 
@@ -32,13 +32,31 @@ const fitrarClientPorData = async (req, res) => {
     })
 }
 
-const maisVendidoToDay = async (req, res) => {
+const maisVendidoByDay = async (req, res) => {
+
+    let date = new Array(req.params.date);
+    let datePedido = '';
+    for (let dt of date) {
+        datePedido = new Date(dt)
+    }
 
     const maisVendido = await Pedidos.findAll({
+        where: {
+            createdAt: {
+                [Op.gte]: datePedido
+            }
+        }
+    })
+    //const pedIds = await Pedidos.count({where: {id: {[Op.gt]: 3}}});
+    //console.log(maisVendido);
 
+    res.status(200).json({
+        status: "Ok",
+        pedido: maisVendido
     })
 }
 
 module.exports = {
-    fitrarClientPorData
+    fitrarClientPorData,
+    maisVendidoByDay
 }

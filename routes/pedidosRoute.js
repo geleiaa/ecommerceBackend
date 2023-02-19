@@ -9,8 +9,12 @@ const Produtos = require('../database/models/productsModel');
 const pedidosController = require('../controllers/pedidosControll');
 
 router
-.route('/cliente/:cliId/date-filter/:date')
+.route('/date-filter/:date/cliente/:cliId')
 .get(pedidosController.fitrarClientPorData);
+
+router
+.route('/mais-vendidos-em/:date')
+.get(pedidosController.maisVendidoByDay);
 
 router
 .route('/')
