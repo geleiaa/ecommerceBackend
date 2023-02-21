@@ -14,7 +14,11 @@ router
 
 router
 .route('/mais-vendidos-em/:date')
-.get(pedidosController.maisVendidoByDay);
+.get(pedidosController.maisVendidoPorData);
+
+router
+.route('/cliente-mais-compra/:date')
+.get(pedidosController.clienteMaisCompraPorData)
 
 router
 .route('/')
