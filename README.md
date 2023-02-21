@@ -6,7 +6,7 @@
 
 3 - A aplicação deve ser capaz de listar as compras de um cliente por dia, mês e ano.(feito)
 
-4 - A aplicação deve ser capaz de listar de forma ordenada os produtos mais vendidos por dia, mês e ano.
+4 - A aplicação deve ser capaz de listar de forma ordenada os produtos mais vendidos por dia, mês e ano.(feito)
 
 5 - A aplicação deve ser capaz de listar de forma ordenada os clientes que mais gastam por dia, mês e ano.
 

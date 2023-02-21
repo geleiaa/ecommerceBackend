@@ -41,18 +41,19 @@ const maisVendidoByDay = async (req, res) => {
     }
 
     const maisVendido = await Pedidos.findAll({
+        attributes: ['id', 'produtoId', 'clienteId', 'quantidadeDoProd',
+            [sequelize.fn('ROUND', sequelize.col('produtoId')), 'produtoId']],
+        group: ['id'],
         where: {
             createdAt: {
                 [Op.gte]: datePedido
             }
         }
     })
-    //const pedIds = await Pedidos.count({where: {id: {[Op.gt]: 3}}});
-    //console.log(maisVendido);
 
     res.status(200).json({
         status: "Ok",
-        pedido: maisVendido
+        pedidos: maisVendido
     })
 }
 
