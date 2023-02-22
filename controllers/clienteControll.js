@@ -1,15 +1,9 @@
-const express = require('express');
-
-const router = express.Router();
-
+const sequelize = require('sequelize');
+const { Op } = require('sequelize');
 
 const Client = require('../database/models/clientModel');
-const Products = require('../database/models/productsModel');
-const Pedidos = require('../database/models/pedidosModel');
 
-router
-.route('/')
-.get( async (req, res) => { // GET clients
+const getTodosClientes = async (req, res) => { // GET clientes
     
     const clients = await Client.findAll();
 
@@ -17,8 +11,10 @@ router
         status: "Ok",
         data: clients
     })
-})
-.post( async (req, res) => { // POST create client
+}
+
+
+const criarCliente = async (req, res) => { // POST create cliente
     const name = req.body.name
     const email = req.body.email
     const tel = req.body.tel
@@ -33,11 +29,10 @@ router
         status: "client created",
         data: client
     })
-})
+}
 
-router
-.route('/:id')
-.get( async (req, res) =>{ // GET client por id
+
+const getOneCliente = async (req, res) =>{ // GET cliente por id
     const clientId = req.params.id
 
     const client = await Client.findAll({
@@ -50,9 +45,10 @@ router
         status: "Ok",
         data: client
     })
-})
+}
 
-.patch( async(req, res) =>{ // PATCH update client por id
+
+const atualizarCliente = async(req, res) =>{ // PATCH update cliente por id
     const clientId = req.params.id
     const { fields } = req.body
 
@@ -62,9 +58,9 @@ router
         status: "client updated",
         data: clientUpdated
     })
-})
+}
 
-.delete( async (req, res) => {
+const deleteCliente = async (req, res) => {
     const clientId = req.params.id
 
     await destroy({where: clientId});
@@ -72,6 +68,12 @@ router
     res.status(200).json({
         status: "client removed"
     })
-})
+}
 
-module.exports = router;
+module.exports = {
+    getTodosClientes,
+    getOneCliente,
+    criarCliente,
+    atualizarCliente,
+    deleteCliente
+}

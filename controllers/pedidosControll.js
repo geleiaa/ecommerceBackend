@@ -6,18 +6,66 @@ const Produtos = require('../database/models/productsModel');
 const Pedidos = require('../database/models/pedidosModel');
 
 
+const getTodosPedidos = async (req, res) => { // GET pedidos
+
+    const pedidos = await Pedidos.findAll({ include: [Clientes, Produtos] });
+
+    res.status(200).json({
+        status: "Ok",
+        pedidos: pedidos
+    })
+}
+
+const criarPedido = async (req, res) => { // POST pedido
+
+    const pedidos = await Pedidos.findAll({ include: [Clientes, Produtos] });
+
+    res.status(200).json({
+        status: "Ok",
+        pedidos: pedidos
+    })
+}
+
+const getOnePedido = async (req, res) => { // GET pedido por id
+    const pedidoId = req.params.id
+
+    const pedido = await Pedidos.findAll({ where: { pedidoId } });
+
+    res.status(200).json({
+        status: "Ok",
+        pedido: pedido
+    })
+}
+
+const atualizarPedido = async (req, res) => { // PATCH update pedido por id
+    const pedidoId = req.params.id
+    const { fields } = req.body
+
+    const pedidoUpdated = await Estoque.update({ fields }, { where: pedidoId })
+
+    res.status(204).json({
+        status: "estoque atualizado",
+        pedido: pedidoUpdated
+    })
+}
+
+const deletePedido = async (req, res) => { // DELETE pedido por id
+    const pedidoId = req.params.id
+
+    await Estoque.destroy({ where: pedidoId });
+
+    res.status(200).json({
+        status: "pedido removido"
+    })
+}
 
 
 const fitrarClientPorData = async (req, res) => {
 
     const clientID = req.params.cliId;
-    const [...date] = req.params.date;
+    const date = new Array(req.params.date);
     let datePedido = '';
-    for (let dt of date) {
-        datePedido = new Date(dt)
-    }
-
-    console.log(datePedido);
+    date.filter(dt => datePedido = new Date(dt))
 
     const pedidoCliente = await Pedidos.findAll({
         where: {
@@ -39,13 +87,9 @@ const fitrarClientPorData = async (req, res) => {
 
 const maisVendidoPorData = async (req, res) => {
 
-    const [...date] = req.params.date;
+    const date = new Array(req.params.date);
     let datePedido = '';
     date.filter(dt => datePedido = new Date(dt))
-    //console.log(datePedido);
-    // for (let dt of date) {
-    //     datePedido = new Date(dt)
-    // }
 
     const maisVendido = await Pedidos.findAll({
         where: {
@@ -54,7 +98,7 @@ const maisVendidoPorData = async (req, res) => {
             }
         },
         attributes: ['id', 'produtoId', 'createdAt',
-        [sequelize.fn('COUNT', sequelize.col('produtoId')), 'pedidos']],
+            [sequelize.fn('COUNT', sequelize.col('produtoId')), 'pedidos']],
         group: ['id', 'produtoId']
     })
 
@@ -64,13 +108,12 @@ const maisVendidoPorData = async (req, res) => {
     })
 }
 
-const clienteMaisCompraPorData = async (req, res) =>{
-    
-    const [...date] = req.params.date
+const clienteMaisCompraPorData = async (req, res) => {
+
+    const date = new Array(req.params.date);
     let datePedido = '';
-    for (let dt of date) {
-        datePedido = new Date(dt)
-    }
+    date.filter(dt => datePedido = new Date(dt))
+    console.log(datePedido);
 
     const maisCompra = await Pedidos.findAll({
         where: {
@@ -79,7 +122,7 @@ const clienteMaisCompraPorData = async (req, res) =>{
             }
         },
         attributes: ['id', 'clienteId', 'createdAt',
-        [sequelize.fn('COUNT', sequelize.col('clienteId')), 'pedidos']],
+            [sequelize.fn('COUNT', sequelize.col('clienteId')), 'pedidos']],
         group: ['id', 'clienteId']
     })
 
@@ -90,6 +133,11 @@ const clienteMaisCompraPorData = async (req, res) =>{
 }
 
 module.exports = {
+    getTodosPedidos,
+    getOnePedido,
+    criarPedido,
+    atualizarPedido,
+    deletePedido,
     fitrarClientPorData,
     maisVendidoPorData,
     clienteMaisCompraPorData
