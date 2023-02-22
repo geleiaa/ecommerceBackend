@@ -1,18 +1,15 @@
 const express = require('express');
 
-const clientRoutes = require('./../routes/clientRoutes');
-const productsRoutes = require('./../routes/productsRoutes');
-const estoqueRoute = require('./../routes/estoqueRoute');
-const pedidosRoute = require('./../routes/pedidosRoute');
-
+const clienteRoutes = require('../routes/clienteRoutes');
+const produtosRoutes = require('../routes/prodsRoutes');
+const pedidosRoutes = require('../routes/pedsRoutes');
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/api/v4/user', clientRoutes);
-app.use('/api/v4/products', productsRoutes);
-app.use('/api/v4/pedidos', pedidosRoute);
-app.use('/api/v4/estoque', estoqueRoute);
+app.use('/api/v4/clientes', clienteRoutes);
+app.use('/api/v4/produtos', produtosRoutes);
+app.use('/api/v4/pedidos', pedidosRoutes);
 
 module.exports = app;

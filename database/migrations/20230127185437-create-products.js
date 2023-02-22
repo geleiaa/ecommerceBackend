@@ -20,8 +20,8 @@ module.exports = {
         type: Sequelize.DataTypes.FLOAT(11),
         allowNull: false
       },
-      estoqueId: {
-        type: Sequelize.DataTypes.INTEGER,
+      estoque: {
+        type: DataTypes.INTEGER(50),
         allowNull: false
       },
       createdAt: {

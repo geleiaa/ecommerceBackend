@@ -8,9 +8,9 @@
 
 4 - A aplicação deve ser capaz de listar de forma ordenada os produtos mais vendidos por dia, mês e ano.(feito)
 
-5 - A aplicação deve ser capaz de listar de forma ordenada os clientes que mais gastam por dia, mês e ano.
+5 - A aplicação deve ser capaz de listar de forma ordenada os clientes que mais gastam por dia, mês e ano.(feito)
 
-6 - A quantidade em estoque de um produto deve ser subtraída na efetivação de uma compra.
+6 - A quantidade em estoque de um produto deve ser subtraída na efetivação de uma compra.(quase)
 
 7 - O cliente deve ter no mínimo as seguintes propriedades: nome, telefone e email.(feito)
 

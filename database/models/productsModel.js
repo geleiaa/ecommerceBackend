@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('./../../server/db');
 
-const Estoque = require('./estoqueModel');
 
 const Produtos = sequelize.define('produtos', {
     id: {
@@ -18,13 +17,9 @@ const Produtos = sequelize.define('produtos', {
         type: DataTypes.FLOAT(11),
         allowNull: false
     },
-    estoqueId: {
-        type: Sequelize.DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'Estoque',
-            key: 'id'
-        }
+    estoque: {
+        type: DataTypes.INTEGER(50),
+        allowNull: false
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -38,9 +33,5 @@ const Produtos = sequelize.define('produtos', {
     freezeTableName: true
 })
 
-
-Produtos.belongsTo(Estoque);
-
-Estoque.hasOne(Produtos);
 
 module.exports = Produtos;
