@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 const { Op } = require('sequelize');
-
+const axios = require('axios');
 
 const Clientes = require('../database/models/clientModel');
 const Produtos = require('../database/models/productsModel');
@@ -18,23 +18,27 @@ const getTodosPedidos = async (req, res) => { // GET pedidos
 }
 
 const criarPedido = async (req, res) => { // POST pedido
-    const prodId = req.body.produtoId
-    const clientId = req.body.clienteId
-    const quantidade = req.body.qauntidadeDoProd
+    const produtoId = req.body.produtoId;
+    const clienteId = req.body.clienteId;
+    const quantidadeDoProd = req.body.quantidadeDoProd;
 
     const pedido = await Pedidos.create({
-        prodId,
-        clientId,
-        quantidade
+        produtoId,
+        clienteId,
+        quantidadeDoProd
     });
-
-    await axios.post('http://localhost:1234/pedidos/estoque', {
-        text: "Testando..."
-    })
+    
+    try {
+        await axios.get('http://localhost:1234/produtos/estoque', {
+            data: pedido
+        });
+    } catch (erro) {
+        console.log(erro);
+    }
 
     res.status(200).json({
         status: "Ok",
-        pedidos: pedidos
+        pedidos: pedido
     })
 }
 

@@ -5,7 +5,7 @@ const Produtos = require('../database/models/productsModel');
 
 const getTodosProdutos =  async (req, res) => { // GET produtos
     
-    const produtos = await Produtos.findAll({ include: Estoque });
+    const produtos = await Produtos.findAll();
 
     res.status(200).json({
         status: "Ok",
@@ -15,15 +15,11 @@ const getTodosProdutos =  async (req, res) => { // GET produtos
 
 
 const criarProduto = async (req, res) => { // POST create produto
-    const nome = req.body.nome
-    const preço = req.body.preço 
-    const estoque = req.body.quantEstoque
+    const name = req.body.name;
+    const preço = req.body.preço;
+    const estoque = req.body.estoque;
 
-    const produtos = await Produtos.create({
-        nome,
-        preço,
-        estoque
-    })
+    const produtos = await Produtos.create({name, preço, estoque})
 
     res.status(201).json({
         status: "produto criado",
@@ -68,7 +64,7 @@ const deleteProduto = async (req, res) => { // DELETE produto por id
 }
 
 const decrementEstoque = async(req, res) => {
-    console.log('DecreFunction',req);
+    console.log('DecreFunction', req.body);
 }
 
 module.exports = {

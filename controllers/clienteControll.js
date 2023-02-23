@@ -15,9 +15,9 @@ const getTodosClientes = async (req, res) => { // GET clientes
 
 
 const criarCliente = async (req, res) => { // POST create cliente
-    const name = req.body.name
-    const email = req.body.email
-    const tel = req.body.tel
+    const name = req.body.name;
+    const email = req.body.email;
+    const tel = req.body.tel;
 
     const client = await Client.create({
         name,
@@ -26,7 +26,7 @@ const criarCliente = async (req, res) => { // POST create cliente
     })
 
     res.status(201).json({
-        status: "client created",
+        status: "cliente created",
         data: client
     })
 }

@@ -8,6 +8,7 @@ const app = express();
 
 app.use(express.json());
 
+
 app.use('/api/v4/clientes', clienteRoutes);
 app.use('/api/v4/produtos', produtosRoutes);
 app.use('/api/v4/pedidos', pedidosRoutes);
