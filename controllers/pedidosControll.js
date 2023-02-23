@@ -1,10 +1,11 @@
 const sequelize = require('sequelize');
 const { Op } = require('sequelize');
-const axios = require('axios');
 
 const Clientes = require('../database/models/clientModel');
 const Produtos = require('../database/models/productsModel');
 const Pedidos = require('../database/models/pedidosModel');
+
+const produtosController = require('../controllers/produtosControll');
 
 
 const getTodosPedidos = async (req, res) => { // GET pedidos
@@ -27,17 +28,9 @@ const criarPedido = async (req, res) => { // POST pedido
         clienteId,
         quantidadeDoProd
     });
-    
-    try {
-        await axios.get('http://localhost:1234/produtos/estoque', {
-            data: pedido
-        });
-    } catch (erro) {
-        console.log(erro);
-    }
 
     res.status(200).json({
-        status: "Ok",
+        status: "pedido criado",
         pedidos: pedido
     })
 }
@@ -57,7 +50,7 @@ const atualizarPedido = async (req, res) => { // PATCH update pedido por id
     const pedidoId = req.params.id
     const { fields } = req.body
 
-    const pedidoUpdated = await Estoque.update({ fields }, { where: pedidoId })
+    const pedidoUpdated = await Pedidos.update({ fields }, { where: pedidoId })
 
     res.status(204).json({
         status: "estoque atualizado",
@@ -74,7 +67,6 @@ const deletePedido = async (req, res) => { // DELETE pedido por id
         status: "pedido removido"
     })
 }
-
 
 const fitrarClientPorData = async (req, res) => {
 
