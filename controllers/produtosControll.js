@@ -64,7 +64,6 @@ const deleteProduto = async (req, res) => { // DELETE produto por id
 }
 
 const decrementEstoque = async(req, res) => {
-    
     console.log('DecreFunction', req.body);
 }
 

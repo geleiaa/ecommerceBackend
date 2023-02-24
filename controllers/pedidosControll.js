@@ -1,5 +1,7 @@
-const sequelize = require('sequelize');
-const { Op } = require('sequelize');
+const EventEmitter = require('events');
+const eventEmitter = new EventEmitter();
+
+const { sequelize, Op } = require('sequelize');
 
 const Clientes = require('../database/models/clientModel');
 const Produtos = require('../database/models/productsModel');
@@ -30,9 +32,16 @@ const criarPedido = async (req, res) => { // POST pedido
     });
 
     res.status(200).json({
-        status: "pedido criado",
+        status: 'pedido criado',
         pedidos: pedido
     })
+
+    console.log(res.body);
+    eventEmitter.on('pedido criado', () => {
+        produtosController.decrementEstoque();
+    });
+
+    eventEmitter.emit('pedido criado');
 }
 
 const getOnePedido = async (req, res) => { // GET pedido por id
