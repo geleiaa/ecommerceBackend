@@ -19,14 +19,10 @@ const criarCliente = async (req, res) => { // POST create cliente
     const email = req.body.email;
     const tel = req.body.tel;
 
-    const client = await Client.create({
-        name,
-        email,
-        tel
-    })
+    const client = await Client.create({ name, email, tel })
 
     res.status(201).json({
-        status: "cliente created",
+        status: "cliente criado",
         data: client
     })
 }
@@ -35,7 +31,7 @@ const criarCliente = async (req, res) => { // POST create cliente
 const getOneCliente = async (req, res) =>{ // GET cliente por id
     const clientId = req.params.id
 
-    const client = await Client.findAll({
+    const client = await Client.findOne({
         where: {
             id: clientId
         }

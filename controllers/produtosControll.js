@@ -1,5 +1,5 @@
-const sequelize = require('sequelize');
-//const { Op } = require('sequelize');
+const {sequelize, Op} = require('sequelize');
+
 const Produtos = require('../database/models/productsModel');
 
 
@@ -31,7 +31,7 @@ const criarProduto = async (req, res) => { // POST create produto
 const getOneProduto = async (req, res) =>{ // GET produto por id
     const productId = req.params.id
 
-    const produtos = await findAll({where: productId});
+    const produtos = await findOne({ where: productId });
 
     res.status(200).json({
         status: "Ok",
@@ -63,8 +63,26 @@ const deleteProduto = async (req, res) => { // DELETE produto por id
     })
 }
 
-const decrementEstoque = async(req, res) => {
-    console.log('DecreFunction', req.body);
+const decrementEstoque = async prod => {
+    
+    const prodVendido = [prod]
+    let prodVendId = '';
+    let prodVendQuant = '';
+    prodVendido.filter(pr => {
+        prodVendId = pr.produtoId
+        prodVendQuant = pr.quantidadeDoProd
+    })
+
+
+    const prodComprado = await Produtos.findOne({
+        where: {
+            id: {
+                [Op.eq]: prodVendId
+            }
+        }
+    })
+
+    await prodComprado.decrement('estoque', { by : prodVendQuant })
 }
 
 module.exports = {

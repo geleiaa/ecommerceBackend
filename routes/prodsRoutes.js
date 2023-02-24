@@ -4,9 +4,6 @@ const router = express.Router();
 const produtosController = require('../controllers/produtosControll');
 
 
-router
-.route('/estoque').get(produtosController.decrementEstoque);
-
 router.route('/')
 .get(produtosController.getTodosProdutos)
 .post(produtosController.criarProduto);
