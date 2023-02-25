@@ -5,15 +5,15 @@ const pedidosController = require('../controllers/pedidosControll');
 
 router
 .route('/date-filter/:date/cliente/:cliId')
-.get(pedidosController.fitrarClientPorData);
+.get(pedidosController.filtraPedidosPorData);
 
 router
 .route('/mais-vendidos-em/:date')
-.get(pedidosController.maisVendidoPorData);
+.get(pedidosController.prodMaisVendidoPorData);
 
 router
 .route('/cliente-mais-compra/:date')
-.get(pedidosController.clienteMaisCompraPorData)
+.get(pedidosController.clienteQueMaisCompraPorData)
 
 router.route('/')
 .get(pedidosController.getTodosPedidos)

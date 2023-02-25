@@ -77,7 +77,7 @@ const deletePedido = async (req, res) => { // DELETE pedido por id
     })
 }
 
-const fitrarClientPorData = async (req, res) => {
+const filtraPedidosPorData = async (req, res) => {
 
     const clientID = req.params.cliId;
     const date = [req.params.date];
@@ -102,30 +102,37 @@ const fitrarClientPorData = async (req, res) => {
     })
 }
 
-const maisVendidoPorData = async (req, res) => {
+const prodMaisVendidoPorData = async (req, res) => {
 
     const date = [req.params.date];
     let datePedido = '';
     date.filter(dt => datePedido = new Date(dt))
+    console.log(datePedido);
 
-    const maisVendido = await Pedidos.findAll({
-        where: {
-            createdAt: {
-                [Op.gte]: datePedido
-            }
-        },
-        attributes: ['id', 'produtoId',
-            [sequelize.fn('COUNT', sequelize.col('produtoId')), 'pedidos']],
-        group: ['id', 'produtoId']
-    })
-
+    const [results, metadata] = await Pedidos.sequelize.query(`
+        SELECT p.id, p.produtoId, COUNT(*) as pedidos 
+        FROM pedidos p join produtos r on p.produtoId = r.id
+        WHERE DATE(p.createdAt) = ${datePedido} GROUP BY r.id, r.name 
+    `)
+    
+    // .findAll({
+    //     where: {
+    //         createdAt: {
+    //             [Op.gte]: datePedido
+    //         }
+    //     },
+    //     attributes: ['id', 'produtoId',
+    //         [sequelize.fn('COUNT', sequelize.col('produtoId')), 'pedidos']],
+    //     group: ['id', 'produtoId']
+    // })
+    console.log('METADATA', metadata);
     res.status(200).json({
         status: "Ok",
-        pedidos: maisVendido
+        pedidos: results
     })
 }
 
-const clienteMaisCompraPorData = async (req, res) => {
+const clienteQueMaisCompraPorData = async (req, res) => {
 
     const date = [req.params.date];
     let datePedido = '';
@@ -137,8 +144,8 @@ const clienteMaisCompraPorData = async (req, res) => {
                 [Op.gte]: datePedido
             }
         },
-        attributes: ['id', 'clienteId', 'createdAt',
-            [sequelize.fn('COUNT', sequelize.col('clienteId')), 'pedidos']],
+        attributes: ['id', 'clienteId',
+            [sequelize.fn('COUNT', sequelize.col('clienteId')), 'vendas']],
         group: ['id', 'clienteId']
     })
 
@@ -154,7 +161,7 @@ module.exports = {
     criarPedido,
     atualizarPedido,
     deletePedido,
-    fitrarClientPorData,
-    maisVendidoPorData,
-    clienteMaisCompraPorData
+    filtraPedidosPorData,
+    prodMaisVendidoPorData,
+    clienteQueMaisCompraPorData
 }
