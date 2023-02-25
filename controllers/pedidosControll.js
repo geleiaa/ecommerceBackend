@@ -1,8 +1,9 @@
 const EventEmitter = require('events');
 const eventEmitter = new EventEmitter();
 
-const sequelize  = require('sequelize');
+const sequelize = require('sequelize');
 const { Op } = require('sequelize');
+const { QueryTypes } = require('sequelize');
 
 const Clientes = require('../database/models/clientModel');
 const Produtos = require('../database/models/productsModel');
@@ -107,28 +108,29 @@ const prodMaisVendidoPorData = async (req, res) => {
     const date = [req.params.date];
     let datePedido = '';
     date.filter(dt => datePedido = new Date(dt))
-    console.log(datePedido);
 
-    const [results, metadata] = await Pedidos.sequelize.query(`
-        SELECT p.id, p.produtoId, COUNT(*) as pedidos 
-        FROM pedidos p join produtos r on p.produtoId = r.id
-        WHERE DATE(p.createdAt) = ${datePedido} GROUP BY r.id, r.name 
-    `)
+    const maisVendido = await Pedidos.findAll({
+        where: {
+            createdAt: {
+                [Op.gte]: datePedido
+            }
+        },
+        include: Produtos,
+        attributes: {
+            exclude: ['updatedAt', 'quantidadeDoProd', 'clienteId']
+        }
+    })
+
+    maisVendido.reduce((antr, prox) => {
+        if(antr.protudo !== prox.produtoId) return prox
+    })
+
+    console.log(maisVendido); 
+    //console.log('accumulator', antr.produto, 'curretnV', prox.id, prox.produtoId);
     
-    // .findAll({
-    //     where: {
-    //         createdAt: {
-    //             [Op.gte]: datePedido
-    //         }
-    //     },
-    //     attributes: ['id', 'produtoId',
-    //         [sequelize.fn('COUNT', sequelize.col('produtoId')), 'pedidos']],
-    //     group: ['id', 'produtoId']
-    // })
-    console.log('METADATA', metadata);
     res.status(200).json({
         status: "Ok",
-        pedidos: results
+        pedidos: maisVendido
     })
 }
 
@@ -144,10 +146,14 @@ const clienteQueMaisCompraPorData = async (req, res) => {
                 [Op.gte]: datePedido
             }
         },
-        attributes: ['id', 'clienteId',
-            [sequelize.fn('COUNT', sequelize.col('clienteId')), 'vendas']],
-        group: ['id', 'clienteId']
+        include: Clientes,
+        attributes: {
+            exclude: ['updatedAt', 'quantidadeDoProd', 'produtoId']
+        }
     })
+
+    maisCompra.filter(cl => console.log(cl.clienteId))
+
 
     res.status(200).json({
         status: "Ok",
