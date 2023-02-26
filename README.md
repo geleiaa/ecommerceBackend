@@ -1,15 +1,13 @@
 ##### Seguindo esse code-challenge https://github.com/semantixlabs/backend-code-challenge
 ##### Obs: esqueci de fazer o fork e só lembrei quando ja tinha feito boa parte do projeto
 
-1 - A aplicação deve ser capaz de listar, cadastrar, atualizar e deletar um produto, cliente e compra.
-(feito)
+1 - A aplicação deve ser capaz de listar, cadastrar, atualizar e deletar um produto, cliente e compra.(feito)
 
-2 - A aplicação deve ser capaz de filtrar as compras por cliente.
-(feito)
+2 - A aplicação deve ser capaz de filtrar as compras por cliente.(feito)
 
 3 - A aplicação deve ser capaz de listar as compras de um cliente por dia, mês e ano.(feito)
 
-4 - A aplicação deve ser capaz de listar de forma ordenada os produtos mais vendidos por dia, mês e ano.(feito)
+4 - A aplicação deve ser capaz de listar de forma ordenada os produtos mais vendidos por dia, mês e an(feito)
 
 5 - A aplicação deve ser capaz de listar de forma ordenada os clientes que mais gastam por dia, mês e ano.(feito)
 
