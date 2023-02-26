@@ -109,7 +109,7 @@ const prodMaisVendidoPorData = async (req, res) => {
     let datePedido = '';
     date.filter(dt => datePedido = new Date(dt))
 
-    const maisVendido = await Pedidos.findAll({
+    const vendidos = await Pedidos.findAll({
         where: {
             createdAt: {
                 [Op.gte]: datePedido
@@ -121,16 +121,12 @@ const prodMaisVendidoPorData = async (req, res) => {
         }
     })
 
-    maisVendido.reduce((antr, prox) => {
-        if(antr.protudo !== prox.produtoId) return prox
-    })
+    const maisVendidos = vendidos.map(vd => vd.produtoId); //usar no front
 
-    console.log(maisVendido); 
-    //console.log('accumulator', antr.produto, 'curretnV', prox.id, prox.produtoId);
-    
     res.status(200).json({
         status: "Ok",
-        pedidos: maisVendido
+        pedidos: vendidos,
+        produtos: maisVendidos
     })
 }
 
@@ -152,12 +148,13 @@ const clienteQueMaisCompraPorData = async (req, res) => {
         }
     })
 
-    maisCompra.filter(cl => console.log(cl.clienteId))
+    const clientes = maisCompra.map(cl => cl.clienteId) //usar no front
 
 
     res.status(200).json({
         status: "Ok",
-        pedidos: maisCompra
+        pedidos: maisCompra,
+        clientes: clientes
     })
 }
 

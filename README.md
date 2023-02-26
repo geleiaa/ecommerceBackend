@@ -1,5 +1,5 @@
 ##### Seguindo esse code-challenge https://github.com/semantixlabs/backend-code-challenge
-Obs: esqueci de fazer o fork e só lembrei quando ja tinha feito boa parte do projeto
+##### Obs: esqueci de fazer o fork e só lembrei quando ja tinha feito boa parte do projeto
 
 1 - A aplicação deve ser capaz de listar, cadastrar, atualizar e deletar um produto, cliente e compra.
 (feito)
@@ -13,7 +13,7 @@ Obs: esqueci de fazer o fork e só lembrei quando ja tinha feito boa parte do pr
 
 5 - A aplicação deve ser capaz de listar de forma ordenada os clientes que mais gastam por dia, mês e ano.(feito)
 
-6 - A quantidade em estoque de um produto deve ser subtraída na efetivação de uma compra.(feito
+6 - A quantidade em estoque de um produto deve ser subtraída na efetivação de uma compra.(feito)
 
 7 - O cliente deve ter no mínimo as seguintes propriedades: nome, telefone e email.(feito)
 
@@ -27,6 +27,6 @@ Obs: esqueci de fazer o fork e só lembrei quando ja tinha feito boa parte do pr
 
 12 - Pode conter testes unitários ou de integração.(...)
 
-13 - Podem ser inseridos mensagens de logs para a rastreabilidade de erros
+13 - Podem ser inseridos mensagens de logs para a rastreabilidade de erros(...)
 
 14 - Pode ser implementado a captura de exceções para evitar comportamentos inesperados.(...)
