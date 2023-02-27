@@ -3,7 +3,6 @@ const eventEmitter = new EventEmitter();
 
 const sequelize = require('sequelize');
 const { Op } = require('sequelize');
-const { QueryTypes } = require('sequelize');
 
 const Clientes = require('../database/models/clientModel');
 const Produtos = require('../database/models/productsModel');
@@ -14,13 +13,13 @@ const produtosController = require('../controllers/produtosControll');
 
 const getTodosPedidos = async (req, res) => { // GET pedidos
 
-    const pedidos = await Pedidos.findAll({ include: [Clientes, Produtos] });
+    const pedidos = await Pedidos.findAll({ include: [Clientes, Produtos] }); // include = association = relationships
 
     res.status(200).json({
         status: "Ok",
         pedidos: pedidos
     })
-}
+} // NOTA: add pagination
 
 const criarPedido = async (req, res) => { // POST pedido
     const produtoId = req.body.produtoId;
@@ -38,10 +37,10 @@ const criarPedido = async (req, res) => { // POST pedido
         pedidos: pedido
     })
 
+    // dispara um evento e chama uma função para atualizar o estoque
     eventEmitter.on('pedido criado', ped => {
         produtosController.decrementEstoque(ped);
     });
-
     eventEmitter.emit('pedido criado', pedido);
 }
 
@@ -81,9 +80,9 @@ const deletePedido = async (req, res) => { // DELETE pedido por id
 const filtraPedidosPorData = async (req, res) => {
 
     const clientID = req.params.cliId;
-    const date = [req.params.date];
+    const date = [req.params.date]; // data para array
     let datePedido = '';
-    date.filter(dt => datePedido = new Date(dt))
+    date.filter(dt => datePedido = new Date(dt)) // data no formato que esta no banco 2023-02-01T19:34:51.316Z
 
     const pedidoCliente = await Pedidos.findAll({
         where: {
@@ -105,9 +104,9 @@ const filtraPedidosPorData = async (req, res) => {
 
 const prodMaisVendidoPorData = async (req, res) => {
 
-    const date = [req.params.date];
+    const date = [req.params.date]; // data para array
     let datePedido = '';
-    date.filter(dt => datePedido = new Date(dt))
+    date.filter(dt => datePedido = new Date(dt)) // data no formato que esta no banco 2023-02-01T19:34:51.316Z
 
     const vendidos = await Pedidos.findAll({
         where: {
@@ -128,13 +127,13 @@ const prodMaisVendidoPorData = async (req, res) => {
         status: "Ok",
         produtos: maisVendidos
     })
-}
+} // NOTA: melhorar func prodMaisVendidoPorData
 
 const clienteQueMaisCompraPorData = async (req, res) => {
 
-    const date = [req.params.date];
+    const date = [req.params.date]; // data para array
     let datePedido = '';
-    date.filter(dt => datePedido = new Date(dt))
+    date.filter(dt => datePedido = new Date(dt))  // data no formato que esta no banco 2023-02-01T19:34:51.316Z
 
     const clientes = await Pedidos.findAll({
         where: {
@@ -155,7 +154,7 @@ const clienteQueMaisCompraPorData = async (req, res) => {
         status: "Ok",
         clientes: maisCompra
     })
-}
+} // NOTA: melhorar clienteQueMaisCompraPorData também 
 
 module.exports = {
     getTodosPedidos,

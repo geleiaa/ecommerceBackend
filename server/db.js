@@ -1,9 +1,10 @@
-// DATABASE CONNECTION
+// CONEXÃO COM O DB 
+// necessario para ter mais de um model
+// tentar conectar no db em cada arquivo de model não funcinou
+
 const Sequelize = require('sequelize');
 const dotenv = require('dotenv')
 dotenv.config({ path: './config.env' });
-
-// const sequelize = new Sequelize(`postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`);
 
 const sequelize = new Sequelize(
     process.env.DB_NAME, 

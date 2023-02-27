@@ -11,7 +11,7 @@ const getTodosProdutos =  async (req, res) => { // GET produtos
         status: "Ok",
         produtos: produtos
     })
-}
+} // NOTA: add pagination
 
 
 const criarProduto = async (req, res) => { // POST create produto
@@ -31,7 +31,7 @@ const criarProduto = async (req, res) => { // POST create produto
 const getOneProduto = async (req, res) =>{ // GET produto por id
     const productId = req.params.id
 
-    const produtos = await findOne({ where: productId });
+    const produtos = await Produtos.findOne({ where: productId });
 
     res.status(200).json({
         status: "Ok",
@@ -44,7 +44,7 @@ const atualizarProduto = async(req, res) =>{ // PATCH update produto por id
     const productId = req.params.id
     const { fields } = req.body
 
-    const productUpdated = await findByIdAndUpdate({fields}, {where: productId})
+    const productUpdated = await update({fields}, {where: productId})
 
     res.status(204).json({
         status: "produto atualizado",
@@ -65,13 +65,13 @@ const deleteProduto = async (req, res) => { // DELETE produto por id
 
 const decrementEstoque = async prod => {
     
-    const prodVendido = [prod]
+    const prodVendido = [prod] // pega o id do pedido vindo do evento em pedidosControll
     let prodVendId = '';
     let prodVendQuant = '';
     prodVendido.filter(pr => {
         prodVendId = pr.produtoId
         prodVendQuant = pr.quantidadeDoProd
-    })
+    }) // separa id do prod e quantidade comprada
 
 
     const prodComprado = await Produtos.findOne({
@@ -82,7 +82,7 @@ const decrementEstoque = async prod => {
         }
     })
 
-    await prodComprado.decrement('estoque', { by : prodVendQuant })
+    await prodComprado.decrement('estoque', { by : prodVendQuant }) // atualiza estoque
 }
 
 module.exports = {

@@ -43,7 +43,10 @@ const Pedidos = sequelize.define('pedidos', {
     freezeTableName: true
 })
 
-Pedidos.belongsTo(Clientes)
+Pedidos.belongsTo(Clientes) 
 Pedidos.belongsTo(Produtos)
+
+// relacionamentos entre Pedidos e Clientes, Pedidos e Produtos são de One-To-One
+// esse é o único ponto de relacionamento das tabelas
 
 module.exports = Pedidos;

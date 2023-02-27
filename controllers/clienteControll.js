@@ -11,7 +11,7 @@ const getTodosClientes = async (req, res) => { // GET clientes
         status: "Ok",
         data: clients
     })
-}
+} // NOTA: add pagination
 
 
 const criarCliente = async (req, res) => { // POST create cliente
@@ -48,7 +48,7 @@ const atualizarCliente = async(req, res) =>{ // PATCH update cliente por id
     const clientId = req.params.id
     const { fields } = req.body
 
-    const clientUpdated = await findByIdAndUpdate({fields}, {where: clientId})
+    const clientUpdated = await update({fields}, {where: clientId})
 
     res.status(204).json({
         status: "client updated",

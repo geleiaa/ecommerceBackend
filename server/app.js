@@ -4,6 +4,8 @@ const clienteRoutes = require('../routes/clienteRoutes');
 const produtosRoutes = require('../routes/prodsRoutes');
 const pedidosRoutes = require('../routes/pedsRoutes');
 
+// NOTA: add middllewares...
+
 const app = express();
 
 app.use(express.json());

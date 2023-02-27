@@ -3,6 +3,8 @@ const router = express.Router();
 
 const pedidosController = require('../controllers/pedidosControll');
 
+// mais sobre as rotas na documentação
+
 router
 .route('/date-filter/:date/cliente/:cliId')
 .get(pedidosController.filtraPedidosPorData);
