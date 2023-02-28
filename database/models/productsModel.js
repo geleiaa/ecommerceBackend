@@ -4,29 +4,29 @@ const sequelize = require('./../../server/db');
 
 const Produtos = sequelize.define('produtos', {
     id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.DataTypes.UUID,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
     name: {
-        type: DataTypes.STRING(30),
+        type: Sequelize.DataTypes.STRING(30),
         allowNull: false
     },
     preço: {
-        type: DataTypes.FLOAT(11),
+        type: Sequelize.DataTypes.FLOAT(11),
         allowNull: false
     },
     estoque: {
-        type: DataTypes.INTEGER(50),
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false
     },
     createdAt: {
-        type: DataTypes.DATE,
+        type: Sequelize.DataTypes.DATE,
         allowNull: false
     },
     updatedAt: {
-        type: DataTypes.DATE,
+        type: Sequelize.DataTypes.DATE,
         allowNull: false
     }
 }, {

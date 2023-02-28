@@ -6,7 +6,7 @@ const Clientes = require('./clientModel');
 
 const Pedidos = sequelize.define('pedidos', {
     id: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.DataTypes.UUID,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true

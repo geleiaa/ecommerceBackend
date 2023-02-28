@@ -16,7 +16,8 @@
 13 - Podem ser inseridos mensagens de logs para a rastreabilidade de erros(...)
 14 - Pode ser implementado a captura de exceções para evitar comportamentos inesperados.(...)
 
-> geleia NOTA: 
+> geleia NOTA:
+> last commit: quebrei :( ERROR: syntax error at or near "SERIAL"
 > verificar warning de data type do Postgres nas migrations e models
 > add docker image (Dockerfile)
 > fazer 12, 13, 14
