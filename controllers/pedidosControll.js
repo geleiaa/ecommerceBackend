@@ -40,6 +40,7 @@ const criarPedido = async (req, res) => { // POST pedido
     // dispara um evento e chama uma função para atualizar o estoque
     eventEmitter.on('pedido criado', ped => {
         produtosController.decrementEstoque(ped);
+        console.log('PedContr', ped);
     });
     eventEmitter.emit('pedido criado', pedido);
 }

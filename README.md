@@ -16,13 +16,12 @@
 13 - Podem ser inseridos mensagens de logs para a rastreabilida de de erros(...) <br />
 14 - Pode ser implementado a captura de exceções para evitar comportamentos inesperados.(...) <br />
 
-<<<<<<< HEAD
+
 > geleia NOTA:
-> last commit: quebrei :( ERROR: syntax error at or near "SERIAL"
-=======
-> geleia NOTA: 
+> last commit: problemas com datatype UUID nas migrations (https://github.com/sequelize/sequelize/issues/13224)
 >
->>>>>>> 7dfbc1ca7e03fbca1f5df87eb20fc7348b9d86c7
+> Deu ruim em prodsContr e pedsContr
+>
 > verificar warning de data type do Postgres nas migrations e models
 >
 > add docker image (Dockerfile)

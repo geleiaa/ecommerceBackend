@@ -3,29 +3,28 @@ const sequelize = require('./../../server/db');
 
 const Clientes = sequelize.define('clientes', {
     id: {
-        type: Sequelize.DataTypes.UUID,
-        autoIncrement: true,
-        allowNull: false,
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.literal('gen_random_uuid()'),
         primaryKey: true
     },
     name: {
-        type: Sequelize.DataTypes.STRING(20),
+        type: DataTypes.STRING(20),
         allowNull: false
     },
     email: {
-        type: Sequelize.DataTypes.STRING(50),
+        type: DataTypes.STRING(50),
         allowNull: false
     },
     tel: {
-        type: Sequelize.DataTypes.INTEGER(15),
+        type: DataTypes.INTEGER(15),
         allowNull: false
     },
     createdAt: {
-        type: Sequelize.DataTypes.DATE,
+        type: DataTypes.DATE,
         allowNull: false
     },
     updatedAt: {
-        type: Sequelize.DataTypes.DATE,
+        type: DataTypes.DATE,
         allowNull: false
     }
 }, {

@@ -6,13 +6,12 @@ const Clientes = require('./clientModel');
 
 const Pedidos = sequelize.define('pedidos', {
     id: {
-        type: Sequelize.DataTypes.UUID,
-        autoIncrement: true,
-        allowNull: false,
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.literal('gen_random_uuid()'),
         primaryKey: true
     },
     produtoId: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
             model: 'Produtos',
@@ -20,7 +19,7 @@ const Pedidos = sequelize.define('pedidos', {
         }
     },
     clienteId: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
             model: 'Clientes',
@@ -28,15 +27,15 @@ const Pedidos = sequelize.define('pedidos', {
         }
     },
     quantidadeDoProd: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     createdAt: {
-        type: Sequelize.DataTypes.DATE,
+        type: DataTypes.DATE,
         allowNull: false
     },
     updatedAt: {
-        type: Sequelize.DataTypes.DATE,
+        type: DataTypes.DATE,
         allowNull: false
     }
 }, {

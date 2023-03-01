@@ -1,6 +1,6 @@
 'use strict';
 
-const {Sequelize, DataTypes} = require('sequelize');
+const {Sequelize, DataTypes, fn} = require('sequelize');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -8,8 +8,7 @@ module.exports = {
     await queryInterface.createTable('clientes', {
       id: {
         type: DataTypes.UUID,
-        autoIncrement: true,
-        allowNull: false,
+        defaultValue: Sequelize.literal('gen_random_uuid()'),
         primaryKey: true
       },
       name: {

@@ -8,9 +8,8 @@ module.exports = {
     await queryInterface.createTable('produtos', {
       id: {
         type: DataTypes.UUID,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+        defaultValue: Sequelize.literal('gen_random_uuid()'),
+        primaryKey: true       
       },
       name: {
         type: DataTypes.STRING(30),

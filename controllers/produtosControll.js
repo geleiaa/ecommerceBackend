@@ -83,6 +83,7 @@ const decrementEstoque = async prod => {
     })
 
     await prodComprado.decrement('estoque', { by : prodVendQuant }) // atualiza estoque
+    console.log(`Compraram ${prodVendQuant} de produto`);
 }
 
 module.exports = {
