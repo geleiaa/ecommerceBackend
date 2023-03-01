@@ -73,7 +73,8 @@ const decrementEstoque = async prod => {
         prodVendQuant = pr.quantidadeDoProd
     }) // separa id do prod e quantidade comprada
 
-
+    console.log('PROD', prodVendId, prodVendQuant);
+    
     const prodComprado = await Produtos.findOne({
         where: {
             id: {

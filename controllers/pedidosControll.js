@@ -42,6 +42,7 @@ const criarPedido = async (req, res) => { // POST pedido
         produtosController.decrementEstoque(ped);
         console.log('PedContr', ped);
     });
+    
     eventEmitter.emit('pedido criado', pedido);
 }
 

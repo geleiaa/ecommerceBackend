@@ -16,7 +16,7 @@ const Clientes = sequelize.define('clientes', {
         allowNull: false
     },
     tel: {
-        type: DataTypes.INTEGER(15),
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     createdAt: {
